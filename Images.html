@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Images</title>
+	<style type="text/css">
+      button {
+         width: 120px;
+         height: 30px;
+      }
+      .btnclass1{
+        font-size: 12px;
+        font-style: italic;
+      }
+      lable{
+        font-size: 14px;
+      }
+    /*.classpetit {
+        width: 50px;
+        height: 50px;
+      }
+      .classmoyen {
+        width: 100px;
+        height: 100px;
+      }
+      .classgrand{
+        width: auto;
+        height: auto;
+      } */
+	
+      .ajouterbordures{
+        border-style:solid;
+        border-width:5px;
+        border-color:rgb(237, 196, 247);
+      }
+	</style>	
+	
+</head>
+
+<body>
+
+	<div id="main">
+        <img id="image" src="images/spring.jpg" alt="Miniature"  />
+    </div>
+	<div id="sizechange">
+        <br />
+         <input type="radio" id="petit" name="size" value="petit"> <lable >Petit</lable> <br /> 
+		     <input type="radio" id="moyen" name="size" value="moyen"> <lable >Moyen</lable> <br />
+         <input type="radio" id="grand" name="size" value="grand"> <lable >Grand</lable> <br />
+       
+    </div>
+    <br />
+    <br />
+    <button id="bordures" class="btnclass1">Ajouter bordures</button>
+	<script src="scripts/jquery.js"></script>
+	
+
+	<script> 
+        var imagesize;
+        var borderstat;
+        var imagelinks=[];
+        imagelinks.push('images/spring.jpg');
+        imagelinks.push('images/summer.jpg');
+        imagelinks.push('images/automne.jpg');
+        imagelinks.push('images/winter.jpg');
+        var i,j;
+        var imagelink;
+        
+        $(function() {
+
+            $('#image').click(function(){
+                imagelink=$(this)[0].src;
+                console.log(imagelink);
+               for (j=0;j<4;j++){
+                  if (imagelink.indexOf(imagelinks[j])>=0 ) 
+                      break;
+                }
+                console.log("j= "+j);
+                i= Math.round(Math.random()*3)
+                console.log("i= "+i);
+                if (j==i) { 
+                  //console.log("alert:" );
+                  i=i+1;
+                  if(i==4){
+                    i=0;
+                  }
+                  //console.log("i= "+i);
+                  $(this).attr('src',imagelinks[i]);
+                
+                }else {
+                      $(this).attr('src',imagelinks[i]);
+                }
+           
+            });
+
+	          $('input[name="size"]').change(function(){
+                imagesize=$(this).val();
+                                     
+                console.log(imagesize);
+                    switch(imagesize){
+                        case "petit": 
+                                $('#image').css('width', '100px');
+                                //$('#image').css('height', '50px');
+                                break;
+                        case "moyen":
+                                $('#image').css('width', '250px');
+                                //$('#image').css('height', '100px');
+                                break;
+                        case "grand":
+                                $('#image').css('width', '400px');
+                                //$('#image').css('height', 'auto');
+                                break; 
+                        default:
+                            alert("choisir la taille.");
+                    }
+
+             });
+
+            $('#bordures').click(function(){
+                borderstat=$(this).text();
+                //console.log(borderstat);
+                if (borderstat=="Ajouter bordures"){
+                    $('#bordures').text('Enlever bordures');
+                    $('#image').addClass("ajouterbordures");
+                }else{
+                    $('#bordures').text('Ajouter bordures');
+                    $('#image').removeClass("ajouterbordures");
+                    }
+
+            });
+   
+                  
+        });
+        
+	
+
+	</script>
+	
+</body>
+</html>

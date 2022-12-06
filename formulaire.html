@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Formulaire</title>
+	<style type="text/css">
+      div {
+        width: 400px;
+        border: 1px solid black;
+        margin: 1px;
+        font-size: 14px;
+      }
+      #Top{
+        height: 130px;
+      }
+      #Middle{
+        height: 140px;
+      }
+      #Bottom{
+        height: 30px;
+        vertical-align: middle;
+      }
+      .txt1{
+       margin: 0px;
+       text-align: center;
+      }
+      .txt2{
+        margin: 5px 0px 0px 15px;
+       }
+       .txt3{
+        margin: 0px 0px 0px 15px;
+       }
+       .format1{
+        width: 240px;
+        margin: 2px 0px 2px 0px;
+        height: 10px;
+      }
+      .format2{
+        width: 100px;
+        margin: 2px 0px 2px 0px;
+        height: 10px;
+      }
+      label{
+        width: 120px;
+        text-align: left;
+        display: inline-block;
+        margin: 2px 5px 2px 15px;
+        height: 14px;
+      }
+      .txt5{
+        width: 150px;
+        margin: 0px 0px 0px 5px;
+        height: 14px;
+       }
+       .message{
+        font-style: italic;
+        color: red;
+        margin: 0px 0px 0px 15px;
+      }
+      select{
+        width: 150px;
+        margin: 5px 0px 0px 15px;
+      }
+      #facture{
+        font-size: 18px;
+        font-weight: bold;
+      }
+      #factureinfo1{
+        font-size: 12px;
+      }
+      .tablehide {
+        width:480px ;
+        border-collapse: collapse;
+        display:none;
+
+      }
+      .tableshow{
+        width:480px ;
+        border-collapse: collapse;
+      }
+		  
+      .facture1option{
+        text-align: left;
+      }
+      #facture1{
+        color:rgb(119, 117, 117);
+        background-color: rgba(239, 203, 228, 0.192);
+        font-size: 16px;
+        border: 1px solid rgba(247, 110, 210, 0.429); 
+      }
+      #facture1 td {
+        align-content: center;
+        width: 160px;
+        border: 1px solid rgba(247, 110, 210, 0.429); 
+        font-size: 14px;
+      }
+      #facture1 th{
+        background-color: rgba(250, 207, 232, 0.592);
+        border: 1px solid rgba(247, 110, 210, 0.429); 
+        align-content: center;
+        width: 160px;
+      }
+      .facture1personinfo{
+       font-style: italic;
+      }
+       
+      tfoot,tbody td{
+        color: black;
+      }
+      #facture1 caption{
+        font-size: 18px;
+        color: rgba(60, 59, 59, 0.855);
+      }
+      #facture1total{
+        text-align: right;
+        color:rgba(253, 15, 237, 0.975); 
+      }
+
+      .prix{
+        text-align: right;
+      }
+     
+
+      #facture2{
+        background-image: url(./images/invoice2.jpg);
+        background-repeat: no-repeat;
+        color:rgb(119, 117, 117);
+        font-size: 16px; 
+        border: 1px solid rgba(140, 187, 244, 0.77); 
+      }
+      #facture2 td{
+        align-content: center;
+        width: 160px;
+        border: 1px solid rgba(140, 187, 244, 0.77); 
+        font-size: 14px;
+       
+      }
+      
+      #facture2 th {
+        border: 1px solid rgba(140, 187, 244, 0.77); 
+        align-content: center;
+        width: 160px;
+        color: rgba(104, 101, 101, 0.785);
+      }
+      #facture2 caption{
+        font-size: 18px;
+        font-family: "Lucida Console", Monaco, monospace;
+        color: rgba(109, 31, 198, 0.949);
+      }
+      .facture2personinfo{
+        font-size: 12px;
+        color: rgb(106, 38, 225);
+      }
+      #facture2total{
+        text-align: right;
+        color: #b014e4;
+      }
+      
+      .facture2option{
+        text-align: left;
+      }
+	</style>	
+	
+</head>
+
+<body>
+    <form method="get" id="formulaire" >
+	   <div id="Top">
+            <p id="title" class="txt1" > Facture achat ordinateur portable </p>
+              
+            <label for="nom" >  Nom complet </label>  
+            <input class="format1" type="text" name="nom" id="nom"  placeholder="Ex: Sylvain" maxlength="35"/><br />
+ 
+            <label for="codepostal" > Code postal </label>  
+            <input class="format2" type="text" name="codepostal" id="codepostal"  placeholder="J0K1X0" maxlength="10" /><br />
+    
+            <label for="courriel" >Votre courriel </label>  
+			      <input class="format1" type="email" name="courriel" id="courriel"   />	<br/>
+
+            <label for="courriel2"  >Confirmez courriel </label>  
+			      <input class="format1" type="email" name="courriel2" id="courriel2"   />	<br/>
+            <p id="message" class="message"></p>
+      </div>
+
+	    <div id="Middle">
+            <p id="marqueQ" class="txt2" > Quelle marque voulez-vous? </p>
+             
+            <select id="marque" >
+              <option value="Dell">Dell-799.99$</option>
+              <option value="Lenovo">Lenovo-1099.00$</option>
+              <option value="Macbook">Macbook-1699.00$</option>
+              <option value="HP">HP-697.00$</option>
+            </select>
+
+            <p id="option" class="txt2" >Cochez les options vous voulez ajouter :</p>
+            <input class="txt3" type="checkbox" name="ecran" id="ecran" /> <label class="txt5" for="ecran">Écran - 300$</label><br />
+		        <input class="txt3" type="checkbox" name="garantic" id="garantic" /> <label class="txt5" for="garantic">Garantic 2 ans - 200$</label><br />
+		        <input class="txt3" type="checkbox" name="imprimante" id="imprimante" /> <label class="txt5" for="imprimante">Imprimante - 100$</label><br />
+		        <input class="txt3" type="checkbox" name="souris" id="souris" /> <label class="txt5" for="souris">Souris sans fil - 40$</label>
+      </div>
+
+      <div id="Bottom">
+            <input class="txt2" type="submit" id="envoyer" value="Commander" >
+             ou
+            <input type="reset" id="annuler" value="Recommencer">
+      </div>
+    </form> 
+    <p id="facture"> Facture</p>
+	  <p id="factureinfo1">En attente de l'envoi du formulaire </p>
+
+  
+      <table id="facture1" class="tableshow">
+        <caption> Facture achat ordinateur portable</caption>
+        <thead>
+        <tr class=" facture1personinfo">
+          <td  colspan="3">
+           <span id="facture1nom">Merci de faire affaire avec nous </span><br />
+           <span id="facture1codepostal">Votre facture ser envoyée à </span> <br />
+           <span id="facture1email">Et un courriel de confirmation à </span><br />
+          </td>
+        </tr>
+        </thead>
+        <tbody id="facture1body" >
+        <tr >
+          <th>Element</th>
+          <th>Marque</th>
+          <th>Prix</th>
+        </tr>
+        <tr>
+          <td>ordinateur</td>
+          <td id="facture1marque"></td>
+          <td id="facture1marqueprix" class="prix"></td>
+        
+
+        </tr>
+      
+        <tr>
+          <th colspan="3" class="facture1option" id="facture1option">Option</th>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td >Total</td>
+          <td id="facture1total" colspan="2"></td>
+        
+        </tr>
+      </tfoot>
+      </table>
+
+
+      <table id="facture2" class="tablehide" >
+        <caption> Facture achat ordinateur portable</caption>
+        <thead>
+        <tr class="facture2personinfo">
+          <td colspan="3">
+           <span id="facture2nom">Merci de faire affaire avec nous </span><br />
+           <span id="facture2codepostal">Votre facture ser envoyée à </span> <br />
+           <span id="facture2email">Et un courriel de confirmation à </span><br />
+          </td>
+        </tr>
+       </thead>
+       <tbody id="facture2body" >
+        <tr>
+          <th>Element</th>
+          <th>Marque</th>
+          <th>Prix</th>
+        </tr>
+        <tr>
+          <td>ordinateur</td>
+          <td id="facture2marque"></td>
+          <td id="facture2marqueprix" class="prix"></td>
+        </tr>
+        <tr>
+          <th colspan="3" class="facture2option" id="facture2option">Option</th>
+        </tr>
+       </tbody>
+       <tfoot>
+        <tr>
+          <td >Total</td>
+          <td id="facture2total" colspan="2"></td>
+        
+        </tr>
+      </tfoot>
+      </table>
+
+
+
+	<script src="scripts/jquery.js"></script>
+	
+
+	<script> 
+   
+        
+   $(function() {
+      var nom,codepostal,courriel;
+      var i;
+      var marque,marqueprix;
+      var optionitemlist = new Array();
+      var optionprixlist = new Array();
+      var total=0;
+      var optionprixsum=0;
+      $('input').focus(focusFond); 
+			$('input').blur( 
+          function() { 
+				      $(this).css('background-color', '#fff');
+			    }); 
+
+      $("#courriel2").change(checkEmail);
+      $("#courriel").change(checkEmail);
+      console.log($("#ecran").prop('checked'));
+      $("#ecran").click(
+          function(){
+              if($("#ecran").prop('checked')){
+                alert("Félicitations pour votre bon choix (Écran est selectionne)!");
+              }else{
+                alert("Attention! Veuillez vous décocher l'ecran? Vérifiez SVP");
+              }
+          }
+         );
+     
+				
+			$("#formulaire").submit(
+          function(event) {
+               event.preventDefault();
+               i=checkInfo();
+               //console.log(i);
+               if (i!==true){
+                    //alert("vous devez remplir tous les champs");
+                    $("#message").html("vous devez remplir tous les champs");
+                    return false;
+                }else{
+                    alert("Vous avez soumis votre commande avec succès");
+                    nom=$("#nom").val();
+                    codepostal=$("#codepostal").val();
+                    courriel=$("#courriel").val();
+                    marque= $("#marque").find("option:selected").val();
+                    console.log(marque);
+                    marqueprix=parseFloat($("#marque").find("option:selected").text().split("-")[1]);
+                    console.log(marqueprix);
+                    $('input[type=checkbox]:checked').each(
+                          function(i){
+                            //console.log($(this).next('label').html());
+                            optionitemlist[i]=$(this).next('label').html().split("-")[0];
+                            //console.log(optionitemlist[i]);
+                            optionprixlist[i]=parseFloat($(this).next('label').html().split("-")[1]); 
+                            //console.log(optionprixlist[i]);
+                            optionprixsum= optionprixsum+optionprixlist[i];
+                            //console.log(optionprixsum);
+                          }
+                     
+                    );
+                   
+                    total=marqueprix+optionprixsum;
+                    //console.log(total);
+
+                    $("#factureinfo1").html("Voici votre facture:");
+                    if(total>=1000){
+                      $("#facture2").removeClass("tablehide");
+                      $("#facture2").addClass("tableshow");
+                      $("#facture2nom").html($("#facture2nom").html()+" "+nom);
+                      //$("#facture2nom").append(nom);
+                      $("#facture2codepostal").html($("#facture2codepostal").html()+" "+codepostal);
+                      $("#facture2email").html($("#facture2email").html()+" "+courriel);
+                      $("#facture2marque").text(marque);
+                      $("#facture2marqueprix").text(marqueprix);
+                      if (optionitemlist.length !=0){
+                         // var html="<tr><th>No</th><th>Element</th><th>Prix</th></tr>"
+                         // $("#facture2body").append(html);
+                          for (var j=0;j<optionitemlist.length;j++){
+                          var html="<tr><td></td><td></td><td></td></tr>"
+                          $("#facture2body").append(html);
+                          //console.log(j);
+                          $("#facture2body tr:last td:eq(0)").text(j+1);
+                          $("#facture2body tr:last td:eq(1)").text(optionitemlist[j]);
+                          $("#facture2body tr:last td:eq(2)").text(optionprixlist[j]);
+                          $("#facture2body tr:last td:eq(2)").addClass("prix");
+                          }
+                      }
+                      $("#facture2total").text(total);
+
+                    }else{
+                      $("#facture1").removeClass("tablehide");
+                      $("#facture1").addClass("tableshow");
+                      //$("#facture1nom").html($("#facture1nom").html()+"  "+nom);
+                      $("#facture1nom").append(nom);
+                      $("#facture1codepostal").html($("#facture1codepostal").html()+"  "+codepostal);
+                      $("#facture1email").html($("#facture1email").html()+"  "+courriel);
+                      $("#facture1marque").text(marque);
+                      $("#facture1marqueprix").text(marqueprix);
+                      if (optionitemlist.length !=0){
+                          //var html="<tr><th>No</th><th>Element</th><th>Prix</th></tr>"
+                          //$("#facture1body").append(html);
+                          for (var j=0;j<optionitemlist.length;j++){
+                          var html="<tr><td></td><td></td><td></td></tr>"
+                          $("#facture1body").append(html);
+                          //console.log(j);
+                          $("#facture1body tr:last td:eq(0)").text(j+1);
+                          $("#facture1body tr:last td:eq(1)").text(optionitemlist[j]);
+                          $("#facture1body tr:last td:eq(2)").text(optionprixlist[j]);
+                          $("#facture1body tr:last td:eq(2)").addClass("prix");
+                          }
+                      }
+                      $("#facture1total").text(total);
+                    }
+                
+                }
+   
+          }
+      );   
+
+      $("#annuler").click(
+        function() { 
+          window.location.reload();
+        }
+      ); 
+      
+     
+    });
+
+	 
+		function focusFond(){
+			  $(this).css('background-color', 'orange');
+		}
+                       
+    function checkEmail(){
+        var email1info = $("#courriel").val();
+        var email2info = $("#courriel2").val();
+        //console.log(email1info);
+        //console.log(email2info);
+        if ((email1info.length !=0 )&&(email2info.length !=0 )){
+            if (email2info===email1info){
+                 $("#message").html("Courriel est bien comfirmé");
+            }else{
+              $("#message").html("les deux courriels ne sont pas identiques,vérifiez SVP");
+            }
+        }else{
+          $("#message").html("");
+        }
+    }
+        
+    function checkInfo(){
+        i=true;
+        if (($("#nom").val()==='')|| ($("#codepostal").val()==='')||($("#courriel").val()==='')||($("#courriel2").val()===''))
+          {
+            i=false;
+           }
+        return i;
+    }
+      
+	
+
+	</script>
+	
+</body>
+</html>
