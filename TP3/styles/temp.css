@@ -1,0 +1,92 @@
+    
+      .tablehide {
+        width:480px ;
+        border-collapse: collapse;
+        display:none;
+
+      }
+      .tableshow{
+        width:480px ;
+        border-collapse: collapse;
+      }
+		  
+      .facture1option{
+        text-align: left;
+      }
+
+      #monpanier{
+        color:rgb(119, 117, 117);
+        background-color: rgba(239, 203, 228, 0.192);
+        font-size: 16px;
+        border: 1px solid black; 
+      }
+      #monpanier td {
+        align-content: center;
+        width: 160px;
+        border: 1px solid black; 
+        font-size: 14px;
+      }
+      #monpanier th{
+        background-color: rgba(243, 251, 124, 0.592);
+        border: 1px solid black; 
+        align-content: center;
+        width: 160px;
+      }
+
+      #facture1{
+        color:rgb(119, 117, 117);
+        background-color: rgba(239, 203, 228, 0.192);
+        font-size: 16px;
+        border: 1px solid rgba(125, 123, 124, 0.429); 
+      }
+      #facture1 td {
+        align-content: center;
+        width: 160px;
+        border: 1px solid rgba(125, 123, 124, 0.429);
+        font-size: 14px;
+      }
+      #facture1 th{
+        background-color: rgba(194, 201, 96, 0.592);
+        border: 1px solid rgba(125, 123, 124, 0.429);
+        align-content: center;
+        width: 160px;
+      }
+      .facture1personinfo{
+       font-style: italic;
+      }
+       
+      tfoot,tbody td{
+        color: black;
+      }
+      #facture1 caption{
+        font-size: 16px;
+        color: rgba(60, 59, 59, 0.855);
+        font-style: italic;
+      }
+      #facture1total{
+        text-align: right;
+        color:rgba(146, 15, 253, 0.975); 
+      }
+
+      .prix{
+        text-align: right;
+      }
+
+     #modifier {
+        text-align: center;
+        
+     }
+
+     #modifier a{
+        color: rgb(53, 53, 164);
+     }
+     
+     #supprimer {
+        
+      text-align: center;
+        
+     }
+     #supprimer a  {
+        color: rgb(91, 91, 152);
+        
+     } 

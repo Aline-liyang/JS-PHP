@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<meta charset="UTF-8">
+
+<head>
+    <title>Revision</title>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>Nombre total de clics</td>
+                <td id="nbClic">""</td>
+            </tr>
+
+            <tr>
+                <td>Nombre moyen de clics</td>
+                <td id="nbMoyenClic">""</td>
+            </tr>
+
+            <tr>
+                <td>Revenu annuel</td>
+                <td id="revenuAnnuel">""</td>
+            </tr>
+            
+            <tr>
+                <td>Mois ou le revenu mensuel est le maximal</td>
+                <td id="moisRevMax">""</td>
+            </tr>
+            
+            <tr>
+                <td>Mois ou le nombre de clics est maximal</td>
+                <td id="moisClicMax">""</td>
+            </tr>
+
+            <tr>
+                <td>Premier mois ou le revenu mensuel a dépassé 50$</td>
+                <td id="premierMois">""</td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+    <button onclick="afficherStatistique()">Afficher les statistiques</button>
+</body>
+
+<script>
+    var tabNbClics=   [1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 3000, 4000];
+    var tabTauxClic=   [.01, .02, .01, .02,.01, .02,.01, .02, .01, .02,.03, .02];
+    var tabMois= ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+    var tabRevMensuel =  [];
+
+    function afficherStatistique(){
+        //document.getElementById('nbClic').innerHTML = somme(tabNbClics);
+        $('#nbClic')[0].innerHTML = somme(tabNbClics);
+
+        //document.getElementById('nbMoyenClic').innerHTML = somme(tabNbClics)/tabNbClics.length;
+        $('#nbMoyenClic')[0].innerHTML = somme(tabNbClics)/tabNbClics.length;
+
+        document.getElementById('moisClicMax').innerHTML = tabMois[maximum(tabNbClics)];
+
+        calculRevMensuel();
+
+        document.getElementById('revenuAnnuel').innerHTML = calculRevAnnuel();
+
+        document.getElementById('moisRevMax').innerHTML = tabMois[maximum(tabRevMensuel)];
+
+        document.getElementById('premierMois').innerHTML = tabMois[calculRevCinquante()];
+
+    }
+
+    function somme(tableau){
+        var somme = 0;
+        for(var i = 0; i < tableau.length; i++){
+            somme += tableau[i];
+        }
+        return somme;
+    }
+
+    function maximum(tableau){
+        var valMax = Number.MIN_SAFE_INTEGER;
+        var indice;
+        for(var i = 0; i < tableau.length; i++){
+            if(tableau[i] > valMax){
+                valMax = tableau[i];
+                indice = i;
+            }
+        }
+        return indice;
+    }
+
+    function calculRevAnnuel(){
+        var revTotal = 0;
+        for(var i = 0; i < tabRevMensuel.length; i++){
+            revTotal += tabRevMensuel[i];
+        }
+        return revTotal;
+    }
+
+    function calculRevMensuel(){
+        for(var i = 0; i < tabNbClics.length; i++){
+            var nbClic = tabNbClics[i];
+            var tauxClic = tabTauxClic[i];
+
+            tabRevMensuel[i] = nbClic * tauxClic;
+        }
+    }
+
+    function calculRevCinquante(){
+        for(var i = 0; i < tabRevMensuel.length; i++){
+            if(tabRevMensuel[i] > 50){
+                return i;
+            }
+        }
+    }
+    
+
+</script>
+
+</html>
