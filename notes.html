@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <style type="text/css">
+        div {
+          width: 400px;
+          margin: 1px;
+          /*border: 1px solid black;*/
+        }
+        div label{
+            margin: 1px;
+        }
+        div input{
+            margin: 1px;
+        }
+        #Top{
+          height: 60px;
+        }
+        #middle{
+          height: 40px;
+          font-size: 14px;
+        }
+        #Bottom{
+          height: 120px;
+        }
+        .btn{
+            border-radius: 5px;
+            border: 1px solid gray;
+            background:white;
+            margin: 0px 12px 0px 0px;
+        }
+        #ajouter{
+            width: 80px;
+        }
+        #rechercher{
+            width: 100px;
+        }
+        .message{
+            font-style: italic;
+            color: red;
+        }
+        
+    </style>
+  </head>
+  <body>
+		<form method="get" id="formulaire" >
+            <div id="Top">
+               <label for="matricule" >  Matricules: </label>  
+   		       <input type="text" id="matricule">
+               <label >* </label> <br />
+
+               <label for="note" >  Note: </label>  
+   		       <input type="text" id="note">
+               <label >* </label> <br />
+            </div>
+            <div id="middle">
+                <p id="result"></p>
+                <p id="message" class="message"></p>
+            </div>
+            
+		</form> 
+		<div id="Bottom">
+            <button type="button" class="btn" id="ajouter" >Ajouter</button>
+            <button type="button" class="btn" id="rechercher" >Rechercher</button>
+            <p id="rechercherresult1"></p>
+            <p id="rechercherresult2"></p>
+        </div>
+		
+
+    <script src="scripts/jquery.js"></script>
+	
+	
+	
+    <script>
+        var matriculeId;
+        var note;
+        var listMatricules = [];
+        var listNotes = [];
+        var moy=0;
+        var sum=0;
+        var i;
+        var moyS=0;
+        var index;
+        var matrId;
+        var indexp;
+        var str;
+        var intRegex;
+        var floatRegex;
+
+        	
+	   $(function() {
+            
+          $("#ajouter").click(
+             function(){                     
+               i=checkInfo();
+               //console.log(i);
+               if (i!==true){
+                    //alert("vous devez remplir tous les champs");
+                    $("#result").html("");
+                    $("#message").html("vous devez remplir tous les champs");
+                    return false;
+                }else{
+                    if(!checkNote()){
+                    $("#result").html("");
+                    $("#message").html("vous devez remplir le note corret");
+                    return false;
+                    }else{
+                    ajout();
+                    }             
+                }
+              
+             }
+          )
+
+          $("#rechercher").click(
+             function(){
+                matriculeId=prompt("Entrez matricule: ");
+                index=rechercher(matriculeId);
+                console.log(index);
+                if (index >=0){
+                    $("#rechercherresult1").html("Le matricule trouvé:  "+listMatricules[index]);
+                    $("#rechercherresult2").html("Le note trouvé:  " + listNotes[index]);
+                    $("#result").html("");
+                }else{
+                    $("#result").html("");
+                    $("#rechercherresult2").html("");
+                    $("#rechercherresult1").html("il y a pas Matricule: "+ matriculeId +" dans la liste");
+                }
+
+             }
+          )
+
+	   });
+
+      function ajout(){
+       matrId=$("#matricule").val();
+       indexp = rechercher(matrId);
+       console.log(indexp);
+       if ( indexp >= 0 ){
+        $("#message").html("le note de Matricule "+listMatricules[indexp]+"  est deja ajouté");
+        $("#result").html("");
+       }
+       else {
+        listMatricules.push($("#matricule").val());
+        listNotes.push(parseFloat($("#note").val()));
+        moyS=moyenne();
+        console.log($("#note").val());
+        console.log("moyS="+ moyS);
+        if ($("#note").val()>=moyS){
+            $("#result").html("Note supérieure à la moyenne");
+            $("#message").html("");
+        }else{
+            $("#result").html("Note inférieure à la moyenne"); 
+            $("#message").html("");
+        }   
+       }
+
+       }
+
+      function moyenne(){
+        moy=0;
+        sum=0;
+        if(listNotes.length>0){
+             for (var i=0; i<listNotes.length;i++){
+                 sum+=listNotes[i];
+                 console.log(sum);
+             }
+         moy=sum/listNotes.length
+         console.log(moy);
+        }
+         else {
+         alert("liste de notes est vide");
+        }
+        return moy;
+      }
+
+      function checkInfo(){
+        i=true;
+        if (($("matricule").val()==='')|| ($("#note").val()===''))
+          {
+            i=false;
+           }
+        return i;
+      }
+
+      function checkNote(){
+         console.log("checknote="+$("#note").val());
+         console.log("===="+parseFloat($("#note").val()).toString());
+         console.log(parseFloat($("#note").val()));
+         console.log(typeof(parseFloat($("#note").val())));
+         /*if (parseFloat($("#note").val()).toString() == "NaN") {
+           return false;
+         } 
+         if (parseFloat($("#note").val())<0){
+            return false;
+         } else{
+           return true;           
+        }*/ // this one can't check the format like "2qwe3"
+
+        intRegex = /^\d+$/;
+        floatRegex = /^((\d+(\.\d *)?)|((\d*\.)?\d+))$/;
+        
+        str = $("#note").val();
+        if(!intRegex.test(str) && !floatRegex.test(str)) {
+            console.log("111:"+intRegex.test(str));
+            console.log("222:"+floatRegex.test(str));
+            return false;
+        }
+        if (parseFloat($("#note").val())<0){
+            return false;
+        } else{
+           return true;           
+        }
+        
+      }
+
+      function rechercher(id){
+        if (id!=null && id !=""){
+            for (var j=0;j<listMatricules.length;j++){
+                if (listMatricules[j]===id){
+                 return j;
+                }
+            }
+        }
+         else{
+            alert("Matricule entre est vide");
+            j=-1;
+            return j ;
+        }
+      }
+
+
+    </script>
+	  
+  </body>
+</html>

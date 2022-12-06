@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Examen-Q2</title>
+		<style type="text/css">
+      
+        body{
+            background-color:var(--background-body);
+            padding: 0;
+            margin: 0px;
+        }
+        #my-web{
+            border: 3px solid var(--border-body);
+            margin: 10px 140px 50px 140px ;
+            background-color:var(--background-my-web);
+        }
+        .textcenter{
+            color:var(--colordiv);
+            text-align: center;
+        }
+        #entete{
+            margin: 0px;
+            padding: 0px;
+            height: 50px;  
+        }
+        #entete p{
+            margin: 0px;
+        }
+        #menu{
+            background-color:var(--background-menu);
+            padding: 0px;
+            height: 50px;       
+        }
+        #menu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #menu li {
+            margin: 0px 4px 0px -0.3px;
+            display: inline; 
+        }
+        #contenu{
+            background-color:var(--background-contenu);
+            height: 420px;
+        }
+        #contenu p{
+            margin: 0px;
+        }
+        #pied{
+            height: 50px;
+        }
+        #pied p{
+            margin: 0px;
+        }
+        .menuoption{
+            background-color: var(--background-menuoption);
+            color:var(--color);
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 140px;
+        }
+          
+          /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+          
+          /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--background-my-web);
+            min-width: 140px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+          
+        }
+          /* Dropdown Content button */
+        .dropdown-content-btn{
+            color:var(--color);
+            background-color:var(--background-my-web);
+            width: 140px;
+            border: 1px solid rgb(136, 134, 134);
+        }
+          
+          /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+          /* Dropdown Content button color changes on hover */
+        .dropdown-content button:hover{
+            background-color:var(--background-menu);
+            color: var(--colormenuoption);
+        }
+          /* Dropdown menu  background color cahnges on hover */
+        .dropdown:hover .menuoption{
+            background-color:var(--background-menuoptionhover);
+        }
+
+        .lighttheme{
+            --background-body:black;
+            --border-body:red;
+            --background-my-web: aqua;
+            --background-menu: aquamarine;
+            --background-contenu: white;
+            --background-menuoption: #eb7b7b;
+            --background-menuoptionhover:red;
+            --color:rgb(97, 95, 95);
+            --colormenuoption:rgb(109, 107, 107);
+            --colordiv:rgb(97, 95, 95);
+        }
+
+        .darktheme{
+            --background-body:white;
+            --border-body:#7a12f9;
+            --background-my-web: rgb(255, 51, 0);
+            --background-menu: yellow;
+            --background-contenu: black;
+            --background-menuoption: #ac7beb;
+            --background-menuoptionhover:rgb(51, 0, 255);
+            --color:white;
+            --colormenuoption:rgb(109, 107, 107);
+            --colordiv: rgb(182, 237, 45);
+          }
+
+        </style>
+	</head>
+
+	<body class="lighttheme">
+     <div id="my-web">
+	   <div id="entete" >
+		 <p class="textcenter">bannière</p>
+	   </div>
+
+	   <div id="menu">
+         <ul>
+			<li>
+                <div class="dropdown">
+                   <button id="stylemenu" class="menuoption" >Style menu</button>
+                   <div class="dropdown-content" >
+                      <button id="gras" class="dropdown-content-btn">Gras</button><br/>
+                      <button id="italique" class="dropdown-content-btn">Italique</button>
+                   </div>
+                </div>
+            </li>
+            
+			<li>
+                <div class="dropdown">
+                    <button  id="thèmessite"  class="menuoption">Thèmes site</button>
+                    <div class="dropdown-content">
+                       <button id="fonce" class="dropdown-content-btn">Foncé</button><br/>
+                       <button id="pale" class="dropdown-content-btn">Pâle</button>
+                    </div>
+                </div>
+            </li>
+		 </ul>
+	   </div>
+
+	   <div id="contenu">
+		 <p class="textcenter">Contenu</p>
+       </div>
+
+	   <div id="pied">
+         <p class="textcenter">pied page</p>
+	   </div>
+
+     </div>
+
+     <script src="scripts/jquery.js"></script>
+
+     <script>
+       var fontweight;
+       var fontstyle;
+
+	   $(function() {
+       
+         $("#gras").click(
+            function(){
+            /*toggle gras style*/
+            changeFontWeight();
+            }         
+         )
+
+         $("#italique").click(
+            function(){
+             /*toggle italic style*/   
+            changeFontStyle();
+            }
+         )
+
+         $("#fonce").click(
+            function(){
+            $("body").removeClass("lightheme");
+            $("body").addClass("darktheme");
+            }    
+         )
+
+         $("#pale").click(
+            function(){
+            $("body").removeClass("darktheme");
+            $("body").addClass("lighttheme");
+           }    
+         )
+
+       });
+
+       function changeFontWeight(){
+         fontweight=$("#gras").css('font-weight');
+         console.log("before="+fontweight);
+         console.log(typeof(fontweight)); 
+         if (fontweight==="700"){
+            $('#stylemenu').css("font-weight","normal");
+            $('#gras').css("font-weight","normal");
+            $('#italique').css("font-weight","normal");
+            $('#thèmessite').css("font-weight","normal");
+            $('#fonce').css("font-weight","normal");
+            $('#pale').css("font-weight","normal");         
+        }else{
+            $('#stylemenu').css("font-weight","bold");
+            $('#gras').css("font-weight","bold");
+            $('#italique').css("font-weight","bold");
+            $('#thèmessite').css("font-weight","bold");
+            $('#fonce').css("font-weight","bold");
+            $('#pale').css("font-weight","bold");            
+         }
+         fontweight=$("#gras").css('font-weight');
+         console.log("after="+ fontweight);
+       }  
+    
+       function changeFontStyle(){
+        fontstyle=$("#italique").css('font-style');
+        console.log("before="+fontstyle);
+        console.log(typeof(fontstyle)); 
+        if (fontstyle==="italic"){
+           $('#stylemenu').css("font-style","normal");
+           $('#gras').css("font-style","normal");
+           $('#italique').css("font-style","normal");
+           $('#thèmessite').css("font-style","normal");
+           $('#fonce').css("font-style","normal");
+           $('#pale').css("font-style","normal");
+        }else{
+           $('#stylemenu').css("font-style","italic");
+           $('#gras').css("font-style","italic");
+           $('#italique').css("font-style","italic");
+           $('#thèmessite').css("font-style","italic");
+           $('#fonce').css("font-style","italic");
+           $('#pale').css("font-style","italic");
+        }
+        fontstyle=$("#italique").css('font-style');
+        console.log("after="+ fontstyle);
+      }  
+
+
+     </script>
+
+    </body>
+
+</html>
